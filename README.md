@@ -1,9 +1,15 @@
 # colorapi
 This is a WIP mod for unifying colors for Minetest into a beautiful palette that will connect artists with "the land" (dyes and their sources), instead of just making more and more like unifieddyes does. Part of the aim is to recolor existing nodes to match a beautiful 16-color palette.
 
+## Other known palettes
+Other known palettes just keep adding more and more colors (though optionally "only" 32 in unifieddyes), instead of considering choosing a palette to theme the world and provide a direction for mods. Other palettes are notable, however, to try to make this colorapi as compatible as possible with the param2 palette indices they use when they use `drawtype = "color"` and `paramtype2 = "color"`.
+- darkage/textures/darkage_palette.png
+- unifieddyes/textures/unifieddyes_palette_cyans.png
+  - unifieddyes "split" palettes in there which require multiple node registrations, since colorfacedir only allows 8 colors (so for example, in 32-color mode, unifieddyes would register 4 nodes for each material)--see `register_color_craft` in unifieddyes.
+  - and various other "split" palettes in there
 
 ## Tasks
-- [ ] reorder the palette so the first 8 are compatible with colorfacedir (8-color palette) and the next 8 are lighter or similar light versions of those 8 in order.
+- [ ] reorder the palette so the first 8 are compatible with the 8-color palette of notable existing mods if possible and the next 8 are lighter or similar light versions of those 8 in order.
 
 
 ## morecolorfacedir

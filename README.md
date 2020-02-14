@@ -2,7 +2,18 @@
 
 This is a WIP mod for unifying colors for Minetest into a beautiful palette that will connect artists with "the land" (dyes and their sources), instead of just making more and more like unifieddyes does. Part of the aim is to recolor existing nodes to match a beautiful 16-color palette.
 
+The standard 16-color palette is:
+- colorapi_palette16[1].png: [spectral colors](https://en.wikipedia.org/wiki/Spectral_color) (Some are slightly non-spectral, but are standard colors such as based IRL dyes from the preceding URL, or based on photos from EnlivenMinetest/palettes/)
+- colorapi_palette16[2].png: pigments (and other non-spectral colors)
+
+All other palettes are ordered to be compatible with other color mods (See "Other known palettes" below).
+
 https://github.com/poikilos/colorapi
+
+## Tasks
+- [ ] fix colorapi_palette_compat_extended to use the new periwinkle
+  (Currently it uses the one from the "UNUSED 15 light_blue from periwinkle (OOPS or purple from wysteria??) reference photo (see palettes/16 in EnlivenMinetest) copy" GIMP layer.
+- [ ] Make a table to reduce colors in darkage to nearest colorapi_palette16 color.
 
 
 ## Other known palettes
@@ -15,14 +26,14 @@ Other known palettes just keep adding more and more colors (though optionally "o
 - unifieddyes/textures/unifieddyes_palette_*.png
   - unifieddyes "split" palettes in there which require multiple node registrations, since colorfacedir only allows 8 colors (so for example, in 32-color mode, unifieddyes would register 4 nodes for each material)--see `register_color_craft` in unifieddyes.
   - and various other "split" palettes in there
-- Sokomine's morecolor mod transforms:
-  - drawtype "normal" paramtype2 "none" or "wallmounted" into colorwallmounted (32-color; using unifieddyes_palette_colorwallmounted.png)
+- Sokomine's morecolor mod changes the paramtype2 as follows:
+  - drawtype "normal" paramtype2 "none" or "wallmounted": becomes "colorwallmounted" (32-color; using unifieddyes_palette_colorwallmounted.png)
     - ~ colorapi's "colorapi_palette_compat_wallmounted.png" palette is compatible with the param2 indices from morecolor colorwallmounted nodes.
       - [ ] some sort of scripted down-conversion is desirable to retain a consistent theme in the game.
-  - paramtype2 "facedir" into "colorfacedir" (8-color; using morecolor_facedir_8colors_palette.png, formerly colorfacedir_palette.png)
-    - * colorapi_palette8 is compatible with indexes (param2) from Sokomine's morecolor (the compatibility only applies to its colorfacedir nodes, which facedir nodes become when using the morecolor mod; colorwallmounted).
-      - some sort of scripted upconversion is desireable, but in the case of colorfacedir, that would require an additional node per material due to the 8-color limit.
+  - paramtype2 "facedir" becomes: "colorfacedir" (8-color; using morecolor_facedir_8colors_palette.png, formerly colorfacedir_palette.png)
     - available at https://raw.githubusercontent.com/Sokomine/morecolor/master/textures/morecolor_facedir_8colors_palette.png
+    - * colorapi_palette8 is compatible with indexes (param2) from the palette above (the compatibility only applies to its colorfacedir nodes, which facedir nodes become when using the morecolor mod).
+      - some sort of scripted upconversion is desireable, but in the case of colorfacedir, that would require an additional node per material to reach 16-color due to the 8-color limit of colorfacedir.
 - xconnected formerly used colorfacedir_palette.png, the old name for the morecolor palette, if `minetest.get_modpath("morecolor")` returns non-nil.
 - darkage/textures/darkage_palette.png
   - a.k.a. ~/minetest/games/Bucket_Game/mods/coderbuild/darkage/textures/darkage_palette.png

@@ -1,32 +1,39 @@
-
+colorapi = {}
 
 local colorapi_dye_lookup = {
--- The numbers here MUST match the colorapi_palette image's order.
-    ['dye:white']      = 0,
-    ['dye:grey']       = 1,  -- spelled "grey" upstream in dyes
-    ['dye:dark_grey']  = 2,  -- spelled "grey" upstream in dyes
-    ['dye:black']      = 3,
-    ['dye:violet']     = 4,
-    ['dye:blue']       = 5,
-    ['dye:cyan']       = 6,
-    ['dye:dark_green'] = 7,
-    ['dye:green']      = 8,
-    ['dye:yellow']     = 9,
-    ['dye:brown']      = 10,
-    ['dye:orange']     = 11,
-    ['dye:red']        = 12,
-    ['dye:magenta']    = 13,
-    ['dye:pink']       = 14,
-
+-- The numbers here MUST match:
+-- * the colorapi_palette image's order.
+-- * minetest_poikilos_colorapi_lookup in poikilos/mcimport/colorapi.py
+    'dye:white'      = 0,
+    'dye:grey'       = 1,  -- spelled "grey" upstream in dyes
+    'dye:dark_grey'  = 2,  -- spelled "grey" upstream in dyes
+    'dye:black'      = 3,
+    'dye:violet'     = 4,
+    'dye:blue'       = 5,
+    'dye:cyan'       = 6,
+    'dye:dark_green' = 7,
+    'dye:green'      = 8,
+    'dye:yellow'     = 9,
+    'dye:brown'      = 10,
+    'dye:orange'     = 11,
+    'dye:red'        = 12,
+    'dye:magenta'    = 13,
+    'dye:pink'       = 14
+    -- 15: see below if (rawget(_G, "light_blue"))
 }
+local colorapi_split_palettes = {'1', '2'}
 local colorapi_colors = {'white', 'grey', 'dark_grey', 'black', 'violet', 'blue', 'cyan', 'dark_green', 'green', 'yellow', 'brown', 'orange', 'red', 'magenta', 'pink'}
 local colorapi_dyes = {'dye:white', 'dye:grey', 'dye:dark_grey', 'dye:black', 'dye:violet', 'dye:blue', 'dye:cyan', 'dye:dark_green', 'dye:green', 'dye:yellow', 'dye:brown', 'dye:orange', 'dye:red', 'dye:magenta', 'dye:pink'}
-if (rawget(_G, "lightblue")) then  -- TODO: make a light_blue mod
-    colorapi_colors[16] = "lightblue"
+
+if (rawget(_G, "light_blue")) then  -- TODO: make a light_blue mod
+    colorapi_colors[16] = "light_blue"
     -- Minetest palette indices start at 0, so 15 is last (same as 16th Lua index):
     colorapi_dye_lookup['light_blue:dye'] = 15
 end
-function colorapi.register_colorapi_node(name, def)
+-- function colorapi.add_color(material_name, color)
+-- TODO: consider implementing this
+-- end
+function colorapi.register_2_nodes_16_colors(partial_name, def)
 -- special thanks: Linuxdirk on minetest forum f=47&t=19492
     def.paramtype2 = 'color'
     def.drawtype = 'color'
@@ -49,6 +56,8 @@ function colorapi.register_colorapi_node(name, def)
         end
     end
     minetest.register_node(name, def)
+    -- for index = 1, #colorapi_colors do
+    -- for color, index in pairs(colorapi_dye_lookup) do
     for index, this_dye_name in ipairs(colorapi_dyes) do
         minetest.register_craft({
             type = "shapeless",
@@ -56,6 +65,7 @@ function colorapi.register_colorapi_node(name, def)
             recipe = {"colorapi:wool", this_dye_name},
         })
         minetest.register_on_craft(
+            -- NOTE: does not work for furnace cooking recipes
             function(itemstack, player, old_craft_grid, craft_inv) {
                 -- TODO: check ingredients and set param2
             }

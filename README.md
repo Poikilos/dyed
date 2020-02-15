@@ -13,6 +13,7 @@ https://github.com/poikilos/colorapi
 ## Tasks
 - [ ] fix colorapi_palette_compat_extended to use the new periwinkle
   (Currently it uses the one from the "UNUSED 15 light_blue from periwinkle (OOPS or purple from wysteria??) reference photo (see palettes/16 in EnlivenMinetest) copy" GIMP layer.
+  - The easiest way to regenerate it is to open the "WIP" xcf in the "unused" directory and then copy the desired section of colors to the new image, then scale linearly.
 - [ ] Make a table to reduce colors in darkage to nearest colorapi_palette16 color.
 
 

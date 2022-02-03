@@ -1,44 +1,45 @@
-# colorapi
+# dyed
+(formerly colorapi)
 
 This is a WIP mod for unifying colors for Minetest into a beautiful palette that will connect artists with "the land" (dyes and their sources), instead of just making more and more like unifieddyes does. Part of the aim is to recolor existing nodes to match a beautiful 16-color palette.
 
 The standard 16-color palette is:
-- colorapi_palette16[1].png: [spectral colors](https://en.wikipedia.org/wiki/Spectral_color) (Some are slightly non-spectral, but are standard colors such as based IRL dyes from the preceding URL, or based on photos from EnlivenMinetest/palettes/)
-- colorapi_palette16[2].png: pigments (and other non-spectral colors)
+- dyed_palette16[1].png: [spectral colors](https://en.wikipedia.org/wiki/Spectral_color) (Some are slightly non-spectral, but are standard colors such as based IRL dyes from the preceding URL, or based on photos from EnlivenMinetest/palettes/)
+- dyed_palette16[2].png: pigments (and other non-spectral colors)
 
 All other palettes are ordered to be compatible with other color mods (See "Other known palettes" below).
 
-https://github.com/poikilos/colorapi
+https://github.com/poikilos/dyed
 
 ## Tasks
-- [ ] fix colorapi_palette_compat_extended to use the new periwinkle
+- [ ] fix dyed_palette_compat_extended to use the new periwinkle
   (Currently it uses the one from the "UNUSED 15 light_blue from periwinkle (OOPS or purple from wysteria??) reference photo (see palettes/16 in EnlivenMinetest) copy" GIMP layer.
   - The easiest way to regenerate it is to open the "WIP" xcf in the "unused" directory and then copy the desired section of colors to the new image, then scale linearly.
-- [ ] Make a table to reduce colors in darkage to nearest colorapi_palette16 color.
+- [ ] Make a table to reduce colors in darkage to nearest dyed_palette16 color.
 
 
 ## Other known palettes
-(* = compatible with colorapi, ~ = compatible with colorapi at least temporarily)
-Other known palettes just keep adding more and more colors (though optionally "only" 32 in unifieddyes), instead of considering choosing a palette to theme the world and provide a direction for mods. Other palettes are notable, however, to try to make this colorapi as compatible as possible with the param2 palette indices they use when they use `drawtype = "color"` and `paramtype2 = "color"`.
+(* = compatible with dyed, ~ = compatible with dyed at least temporarily)
+Other known palettes just keep adding more and more colors (though optionally "only" 32 in unifieddyes), instead of considering choosing a palette to theme the world and provide a direction for mods. Other palettes are notable, however, to try to make this dyed as compatible as possible with the param2 palette indices they use when they use `drawtype = "color"` and `paramtype2 = "color"`.
 - unifieddyes/textures/unifieddyes_palette_extended.png
-  - [ ] The plan for this is for colorapi is to reduce the set of colors for these nodes (through some sort of scripted down-conversion).
+  - [ ] The plan for this is for dyed is to reduce the set of colors for these nodes (through some sort of scripted down-conversion).
 - unifieddyes/textures/unifieddyes_palette_colorfacedir.png
-  - [ ] ~ The plan for this is for colorapi is to reduce the set of colors for these nodes (through some sort of scripted down-conversion), but in this case, for now
+  - [ ] ~ The plan for this is for dyed is to reduce the set of colors for these nodes (through some sort of scripted down-conversion), but in this case, for now
 - unifieddyes/textures/unifieddyes_palette_*.png
   - unifieddyes "split" palettes in there which require multiple node registrations, since colorfacedir only allows 8 colors (so for example, in 32-color mode, unifieddyes would register 4 nodes for each material)--see `register_color_craft` in unifieddyes.
   - and various other "split" palettes in there
 - Sokomine's morecolor mod changes the paramtype2 as follows:
   - drawtype "normal" paramtype2 "none" or "wallmounted": becomes "colorwallmounted" (32-color; using unifieddyes_palette_colorwallmounted.png)
-    - ~ colorapi's "colorapi_palette_compat_wallmounted.png" palette is compatible with the param2 indices from morecolor colorwallmounted nodes.
+    - ~ dyed's "dyed_palette_compat_wallmounted.png" palette is compatible with the param2 indices from morecolor colorwallmounted nodes.
       - [ ] some sort of scripted down-conversion is desirable to retain a consistent theme in the game.
   - paramtype2 "facedir" becomes: "colorfacedir" (8-color; using morecolor_facedir_8colors_palette.png, formerly colorfacedir_palette.png)
     - available at https://raw.githubusercontent.com/Sokomine/morecolor/master/textures/morecolor_facedir_8colors_palette.png
-    - * colorapi_palette8 is compatible with indexes (param2) from the palette above (the compatibility only applies to its colorfacedir nodes, which facedir nodes become when using the morecolor mod).
+    - * dyed_palette8 is compatible with indexes (param2) from the palette above (the compatibility only applies to its colorfacedir nodes, which facedir nodes become when using the morecolor mod).
       - some sort of scripted upconversion is desireable, but in the case of colorfacedir, that would require an additional node per material to reach 16-color due to the 8-color limit of colorfacedir.
 - xconnected formerly used colorfacedir_palette.png, the old name for the morecolor palette, if `minetest.get_modpath("morecolor")` returns non-nil.
 - darkage/textures/darkage_palette.png
   - a.k.a. ~/minetest/games/Bucket_Game/mods/coderbuild/darkage/textures/darkage_palette.png
-  - colorapi ignores compatibility with this odd palette order. Maybe one day the mod can be converted to use the colorapi standard 16-color palette.
+  - dyed ignores compatibility with this odd palette order. Maybe one day the mod can be converted to use the dyed standard 16-color palette.
 - stained_glass formerly used stained_glass_faint_palette.png and stained_glass_pastels_palette.png
   - The order is the same as darkage_palette.
   - VanessaE switched over to unifieddyes and deleted the two stained_glass palettes in https://github.com/minetest-mods/stained_glass/commit/fef736edd6ad1d76588dfb5282f06519d59d3f38
